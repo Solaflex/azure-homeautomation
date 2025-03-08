@@ -24,7 +24,7 @@ resource "azurerm_log_analytics_workspace" "openwebui" {
   location            = azurerm_resource_group.openwebui.location
   resource_group_name = azurerm_resource_group.openwebui.name
   sku                 = "PerGB2018"
-  retention_in_days   = 3
+  retention_in_days   = 7
 }
 
 resource "azurerm_container_app_environment" "openwebui" {
@@ -46,6 +46,15 @@ resource "azurerm_container_app" "openwebui" {
       image  = local.container_image
       cpu    = local.container_cpu
       memory = local.container_memory
+    }
+  }
+
+  ingress {
+    allow_insecure_connections = false 
+    external_enabled = true
+    target_port = 8080
+    traffic_weight {
+      percentage = 100
     }
   }
 
