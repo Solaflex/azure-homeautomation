@@ -56,6 +56,12 @@ resource "azurerm_container_app" "openwebui" {
         name      = "ai-openweb-volume"
         path = "/app/backend/data"
       }
+
+      liveness_probe {
+        path = "/health"
+        port = 8080
+        transport = "HTTPS"
+      }
     }
     max_replicas = 1
     min_replicas = 1
