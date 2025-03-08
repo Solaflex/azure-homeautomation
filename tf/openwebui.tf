@@ -47,6 +47,16 @@ resource "azurerm_container_app" "openwebui" {
       cpu    = local.container_cpu
       memory = local.container_memory
     }
+    max_replicas = 1
+    min_replicas = 1
+
+    volume {
+      name = "ai-openweb-volume"
+      storage_name = azurerm_container_app_environment_storage.openwebui.name
+      storage_type = "AzureFiles"
+      mount_options = "nobrl"
+
+    }
   }
 
   ingress {
