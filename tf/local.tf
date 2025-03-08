@@ -6,4 +6,6 @@ locals {
   container_memory = "2Gi"
 
   container_name = "openwebui"
+
+  cognitive_account_sku = "F0"
 }
