@@ -60,7 +60,7 @@ resource "azurerm_container_app" "openwebui" {
       liveness_probe {
         path = "/health"
         port = 8080
-        transport = "HTTPS"
+        transport = "HTTP"
       }
     }
     max_replicas = 1
