@@ -51,6 +51,11 @@ resource "azurerm_container_app" "openwebui" {
         name  = "WEBUI_URL"
         value = "${local.container_name}.${azurerm_container_app_environment.openwebui.default_domain}"
       }
+
+      volume_mounts {
+        name      = "ai-openweb-volume"
+        path = "/app/backend/data"
+      }
     }
     max_replicas = 1
     min_replicas = 1
