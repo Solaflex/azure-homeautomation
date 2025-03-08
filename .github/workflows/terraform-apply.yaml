@@ -1,0 +1,40 @@
+name: Terraform Apply
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    terraform:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: "Checkout repository"
+          uses: "actions/checkout@v2"
+
+        - name: Setup Terraform
+          uses: hashicorp/setup-terraform@v3
+
+        - name: Terraform Init
+          run: terraform init -input=false
+
+        - id: plan
+          run: terraform plan -no-color
+          env:
+            ARM_TENANT_ID: ${{ env.ARM_TENANT_ID }} 
+            ARM_SUBSCRIPTION_ID: ${{ env.ARM_SUBSCRIPTION_ID }}
+            ARM_CLIENT_ID: ${{ env.ARM_CLIENT_ID }}
+            ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+           
+
+        - run: echo ${{ steps.plan.outputs.stdout }}
+        - run: echo ${{ steps.plan.outputs.stderr }}
+        - run: echo ${{ steps.plan.outputs.exitcode }}
+
+
+
+        # - name: Terraform Apply
+        #   run: terraform apply -auto-approve
+        #   env:
+        #         TF_VAR_example: ${{ secrets.TF_VAR_EXAMPLE }}
