@@ -93,3 +93,13 @@ resource "azurerm_container_app_environment_storage" "openwebui" {
   access_key                   = azurerm_storage_account.openwebui.primary_access_key
   access_mode                  = "ReadWrite"
 }
+
+
+resource "azurerm_cognitive_account" "openwebui" {
+  name                = "di-openwebui"
+  location            = azurerm_resource_group.openwebui.location
+  resource_group_name = azurerm_resource_group.openwebui.name
+  kind                = "FormRecognizer"
+  
+  sku_name = "S0"
+}
