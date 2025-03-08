@@ -46,6 +46,11 @@ resource "azurerm_container_app" "openwebui" {
       image  = local.container_image
       cpu    = local.container_cpu
       memory = local.container_memory
+
+      env {
+        name  = "OPENAI_API_KEY"
+        value = "xyz"
+      }
     }
     max_replicas = 1
     min_replicas = 1
@@ -55,7 +60,6 @@ resource "azurerm_container_app" "openwebui" {
       storage_name = azurerm_container_app_environment_storage.openwebui.name
       storage_type = "AzureFile"
       mount_options = "nobrl"
-
     }
   }
 
