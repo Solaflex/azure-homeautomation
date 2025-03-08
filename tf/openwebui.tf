@@ -52,10 +52,20 @@ resource "azurerm_container_app" "openwebui" {
   ingress {
     allow_insecure_connections = false 
     external_enabled = true
+    transport = "http"
     target_port = 8080
     traffic_weight {
       percentage = 100
+      latest_revision = true
     }
   }
+}
 
+resource "azurerm_container_app_environment_storage" "openwebui" {
+  name                         = "openwebcontainerfileshare"
+  container_app_environment_id = azurerm_container_app_environment.openwebui.id
+  account_name                 = azurerm_storage_account.openwebui.name
+  share_name                   = azurerm_storage_share.aistorage.name
+  access_key                   = azurerm_storage_account.openwebui.primary_access_key
+  access_mode                  = "ReadWrite"
 }
