@@ -18,9 +18,11 @@ jobs:
 
         - name: Terraform Init
           run: terraform init -input=false
+          working-directory: ./tf
 
         - id: plan
           run: terraform plan -no-color
+          working-directory: ./tf
           env:
             ARM_TENANT_ID: ${{ env.ARM_TENANT_ID }} 
             ARM_SUBSCRIPTION_ID: ${{ env.ARM_SUBSCRIPTION_ID }}
