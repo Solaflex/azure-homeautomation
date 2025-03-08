@@ -2,6 +2,8 @@
 
 https://github.com/Solaflex/azure-homeautomation/settings
 
+https://blakedrumm.com/blog/azure-container-apps-openweb-ui/
+
 
 ```
 $env:ARM_CLIENT_ID = "00000000-0000-0000-0000-000000000000"
