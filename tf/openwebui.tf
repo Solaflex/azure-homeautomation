@@ -35,7 +35,7 @@ resource "azurerm_container_app_environment" "openwebui" {
 }
 
 resource "azurerm_container_app" "openwebui" {
-  name                         = "ca-openwebui"
+  name                         = local.container_name
   container_app_environment_id = azurerm_container_app_environment.openwebui.id
   resource_group_name          = azurerm_resource_group.openwebui.name
   revision_mode                = "Single"
@@ -48,8 +48,8 @@ resource "azurerm_container_app" "openwebui" {
       memory = local.container_memory
 
       env {
-        name  = "OPENAI_API_KEY"
-        value = "xyz"
+        name  = "WEBUI_URL"
+        value = "${local.container_name}.${azurerm_container_app_environment.openwebui.default_domain}"
       }
     }
     max_replicas = 1
