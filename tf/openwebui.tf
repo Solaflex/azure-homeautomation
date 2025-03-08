@@ -53,7 +53,7 @@ resource "azurerm_container_app" "openwebui" {
     volume {
       name = "ai-openweb-volume"
       storage_name = azurerm_container_app_environment_storage.openwebui.name
-      storage_type = "AzureFiles"
+      storage_type = "AzureFile"
       mount_options = "nobrl"
 
     }
