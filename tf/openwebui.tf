@@ -101,5 +101,5 @@ resource "azurerm_cognitive_account" "openwebui" {
   resource_group_name = azurerm_resource_group.openwebui.name
   kind                = "FormRecognizer"
 
-  sku_name = "F0"
+  sku_name = "S0"
 }
