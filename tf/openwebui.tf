@@ -58,7 +58,12 @@ resource "azurerm_container_app" "openwebui" {
       }
     }
     max_replicas = 1
-    min_replicas = 1
+    min_replicas = 0
+
+    http_scale_rule {
+      name = "scale-rule"
+      concurrent_requests = 1
+    }
 
     volume {
       name = "ai-openweb-volume"
