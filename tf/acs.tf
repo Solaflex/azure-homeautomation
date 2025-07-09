@@ -26,7 +26,7 @@ resource "azurerm_resource_group" "acs" {
 }
 
 resource "azurerm_communication_service" "main" {
-  name                = "acs-main"
+  name                = "acs-main-waechter365"
   resource_group_name = azurerm_resource_group.acs.name
   data_location       = "Europe"
 }
