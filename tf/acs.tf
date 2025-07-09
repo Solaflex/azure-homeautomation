@@ -19,3 +19,13 @@ resource "azurerm_email_communication_service_domain_sender_username" "noreply" 
   name                    = "noreply"
   email_service_domain_id = azurerm_email_communication_service_domain.zzl.id
 }
+
+# Create an application
+resource "azuread_application_registration" "smtp" {
+  display_name = "smtp"
+}
+
+# Create a service principal
+resource "azuread_service_principal" "smtp" {
+  client_id = azuread_application_registration.smtp.client_id
+}
