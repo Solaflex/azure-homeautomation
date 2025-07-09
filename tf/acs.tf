@@ -38,5 +38,11 @@ resource "azuread_service_principal_password" "smtp" {
 output "smtp_client_secret" {
   value     = azuread_service_principal_password.smtp.value
   sensitive = true
+}
+# terraform output smtp_client_secret
 
+resource "azurerm_role_assignment" "smtp" {
+  scope                = azurerm_email_communication_service.main.id
+  role_definition_name = "Communication and Email Service Owner"
+  principal_id         = azuread_service_principal.smtp.id
 }
