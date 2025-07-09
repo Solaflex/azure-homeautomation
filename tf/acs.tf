@@ -29,3 +29,14 @@ resource "azuread_application_registration" "smtp" {
 resource "azuread_service_principal" "smtp" {
   client_id = azuread_application_registration.smtp.client_id
 }
+
+resource "azuread_service_principal_password" "smtp" {
+  service_principal_id = azuread_service_principal.smtp.id
+  end_date             = "2099-01-01T01:02:03Z"
+}
+
+output "smtp_client_secret" {
+  value     = azuread_service_principal_password.smtp.value
+  sensitive = true
+
+}
