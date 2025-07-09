@@ -37,6 +37,6 @@ resource "azuread_service_principal_password" "smtp" {
 
 output "smtp_client_secret" {
   value     = azuread_service_principal_password.smtp.value
-  sensitive = false
+  sensitive = true
 
 }
