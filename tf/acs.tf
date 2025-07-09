@@ -48,10 +48,10 @@ resource "azurerm_email_communication_service_domain_sender_username" "noreply" 
   email_service_domain_id = azurerm_email_communication_service_domain.zzl.id
 }
 
-# resource "azurerm_communication_service_email_domain_association" "smtp" {
-#   communication_service_id = azurerm_communication_service.main.id
-#   email_service_domain_id  = azurerm_email_communication_service_domain.zzl.id
-# }
+resource "azurerm_communication_service_email_domain_association" "smtp" {
+  communication_service_id = azurerm_communication_service.main.id
+  email_service_domain_id  = azurerm_email_communication_service_domain.zzl.id
+}
 
 
 resource "azurerm_role_assignment" "smtp" {
