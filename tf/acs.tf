@@ -10,7 +10,7 @@ resource "azurerm_email_communication_service" "main" {
 }
 
 resource "azurerm_email_communication_service_domain" "zzl" {
-  name              = "zzl_com"
+  name              = "zzlcom"
   email_service_id  = azurerm_email_communication_service.main.id
   domain_management = "CustomerManaged"
 }
