@@ -55,7 +55,7 @@ resource "azurerm_communication_service_email_domain_association" "smtp" {
 
 
 resource "azurerm_role_assignment" "smtp" {
-  scope                = azurerm_resource_group.acs.id
+  scope                = azurerm_communication_service.main.id
   role_definition_name = "Communication and Email Service Owner"
   principal_id         = azuread_service_principal.smtp.object_id
 }
