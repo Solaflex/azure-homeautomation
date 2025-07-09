@@ -16,6 +16,6 @@ resource "azurerm_email_communication_service_domain" "zzl" {
 }
 
 resource "azurerm_email_communication_service_domain_sender_username" "noreply" {
-  name                    = "noreply-su"
+  name                    = "noreply"
   email_service_domain_id = azurerm_email_communication_service_domain.zzl.id
 }
