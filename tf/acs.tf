@@ -42,7 +42,7 @@ output "smtp_client_secret" {
 # terraform output smtp_client_secret
 
 resource "azurerm_role_assignment" "smtp" {
-  scope                = azurerm_email_communication_service.main.id
+  scope                = azurerm_resource_group.acs.id
   role_definition_name = "Communication and Email Service Owner"
   principal_id         = azuread_service_principal.smtp.id
 }
